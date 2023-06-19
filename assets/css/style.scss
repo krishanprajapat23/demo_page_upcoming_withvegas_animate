@@ -1,0 +1,104 @@
+@import "_utilties.scss";
+
+body {
+    display: flex;
+    background: #000;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+    line-height: 1.5;
+    vertical-align: baseline;
+}
+
+//preloader css
+.preloader {
+    .content {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 99999;
+        overflow: hidden;
+        display: block;
+        h2 {
+            color: #fff;
+            font-size: 8em;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translateY(-50%) translateX(-50%);
+            -ms-transform: translateY(-50%) translateX(-50%);
+            transform: translateY(-50%) translateX(-50%);
+            &:nth-child(1) {
+                color: transparent;
+                -webkit-text-stroke: 2px $theme-clr;
+            }
+            &:nth-child(2) {
+                color: $theme-clr;
+                animation: animate 4s ease-in-out infinite;
+            }
+        }
+        @keyframes animate {
+            0%,
+            100% {
+                clip-path: polygon(0% 45%, 16% 44%, 33% 50%, 54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+            }
+
+            50% {
+                clip-path: polygon(0% 60%, 15% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+            }
+        }
+    }
+}
+
+//main wrapper
+.main-wrapper {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+body.loaded {
+    display: block;
+    .preloader {
+        display: none;
+    }
+    .main-wrapper {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+//layout one
+.main-layout {
+    height: 100vh !important;
+    .main-content {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 3rem 2rem;
+        position: relative;
+        z-index: 2;
+        min-height: 100vh;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        justify-content: center;
+        @media (max-width: 575px) {
+            padding: 3rem 1rem;
+        }
+        .sub-title {
+            font-weight: 500;
+            letter-spacing: .2em;
+        }
+    }
+}
+
